@@ -33,7 +33,14 @@ Cette application de gestion des tâches est développée avec React Native et E
 
     Cela ouvrira Expo Dev Tools dans votre navigateur, où vous pouvez lancer l'application sur un simulateur ou un appareil physique via le QR code.
 
-4. **Exécuter l'Application avec Expo Go :**
+   Si vous avez éjecté d'Expo et utilisez React Native CLI, vous pouvez exécuter le projet avec les commandes suivantes :
+
+   ```sh
+   npx react-native run-android
+   npx react-native run-ios
+   ```
+
+5. **Exécuter l'Application avec Expo Go :**
 
     - Pour tester sur un appareil physique, scannez le QR code affiché dans Expo Dev Tools avec l'application Expo Go.
     - Pour tester sur un simulateur/emulateur :
