@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { View, Text, Image, Dimensions, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
 import { TaskContext } from '../TaskContext';
-import AddTask from './AddTask';
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -10,12 +9,12 @@ const screenHeight = Dimensions.get('window').height;
 
 const Entry = () => {
 
-    const { isAddingTask, toggleIsAddingTask } = useContext(TaskContext);
+    const { toggleIsAddingTask } = useContext(TaskContext);
 
     return (
         <View style={styles.container}>
-            <View style={{flex : 0.2, justifyContent : 'center', alignItems:'center', paddingHorizontal : 20}}>
-                <Text style={{fontSize : 12, color : 'grey'}}>you will see your tasks here once you create them for the moment you do not have any tasks (start creating them Now)</Text>
+            <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
+                <Text style={{ fontSize: 12, color: 'grey' }}>Vous verrez vos tâches ici une fois que vous les aurez créées, pour le moment vous n'avez aucune tâche (commencez à les créer maintenant à partir du bouton ci-dessous)</Text>
             </View>
             <View style={styles.entryContainer}>
                 <View>
@@ -23,11 +22,11 @@ const Entry = () => {
                         resizeMode='contain'
                     />
                 </View>
-                <Text style={styles.text}>Organize and Track Your Tasks Seamlessly</Text>
+                <Text style={styles.text}>Organisez et suivez vos tâches en toute transparence</Text>
             </View>
             <View style={styles.buttonContainer}>
                 <Button style={styles.button} icon="checkbox-marked-circle-plus-outline" mode="contained" onPress={() => toggleIsAddingTask(true)}>
-                    Add your first Task
+                    Ajoutez votre première tâche
                 </Button>
             </View>
         </View>
@@ -37,13 +36,11 @@ const Entry = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection : 'column',
-        // backgroundColor: 'pink'
+        flexDirection: 'column',
     },
     entryContainer: {
-        flex : 0.7,
+        flex: 0.7,
         alignItems: 'center',
-        // backgroundColor: 'yellow'
     },
     image: {
         width: screenWidth,
@@ -60,7 +57,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderTopColor: 'grey',
         borderTopWidth: 0.5,
-        // backgroundColor: 'purple',
     },
     button: {
         width: screenWidth / 1.1

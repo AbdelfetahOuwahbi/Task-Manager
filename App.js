@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import MainScreen from './screens/MainScreen';
 import { TaskProvider } from './TaskContext';
 

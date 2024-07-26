@@ -19,18 +19,18 @@ const TaskItem = ({ task }) => {
                 ) : (
                     <MaterialIcons style={{ marginLeft: screenWidth / 30 }} name="pending-actions" size={24} color="orange" />
                 )}
-                <Text style={{ marginLeft: screenWidth / 100, fontStyle: 'italic', fontSize: 16, color: (task.completed ? "green" : "orange") }}>{task.completed ? "completed" : "pending"}</Text>
+                <Text style={{ marginLeft: screenWidth / 100, fontStyle: 'italic', fontSize: 16, color: (task.completed ? "green" : "orange") }}>{task.completed ? "complété" : "en attente"}</Text>
             </View>
             <View style={styles.contentConatiner}>
-                <Text style={{fontSize: 18, fontWeight: 'bold',}}>{task.title}</Text>
-                <Text style={{fontSize: 15, fontWeight: '400',}}>{task.description}</Text>
+                <Text style={{ fontSize: 18, fontWeight: 'bold', }}>{task.title}</Text>
+                <Text style={{ fontSize: 15, fontWeight: '400', }}>{task.description}</Text>
             </View>
             <View style={styles.actionsContainer}>
                 <TouchableOpacity disabled={task.completed} onPress={() => markTaskAsCompleted(task.id)} style={styles.completedButtonContainer}>
-                    <Text>{task.completed ? "terminé" : "marquer comme terminé"}</Text>
+                    <Text style={styles.buttonsText}>{task.completed ? "terminé" : "marquer comme terminé"}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => removeTask(task.id)} style={styles.removeButtonContainer}>
-                    <Text>Supprimer</Text>
+                    <Text style={styles.buttonsText}>Supprimer</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     contentConatiner: {
         flex: 0.65,
         justifyContent: 'space-evenly',
-        paddingHorizontal : screenWidth/80,
+        paddingHorizontal: screenWidth / 80,
         flexDirection: 'column',
     },
     actionsContainer: {
@@ -85,6 +85,11 @@ const styles = StyleSheet.create({
         borderColor: '#fff',
         backgroundColor: '#FF373E',
         borderRadius: screenWidth / 80,
+    },
+    buttonsText: {
+        fontSize: 15,
+        fontStyle: 'italic',
+        fontWeight: '500'
     }
 });
 

@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
-import { TaskContext } from '../TaskContext';
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -9,7 +8,7 @@ const screenHeight = Dimensions.get('window').height;
 const Header = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome To Task Manager</Text>
+      <Text style={styles.text}>Bienvenue dans le gestionnaire de tâches</Text>
       <Image source={require('../assets/TasksImage.png')} style={styles.image}
         resizeMode='contain'
       />
@@ -20,6 +19,7 @@ const styles = StyleSheet.create({
   container: {
     width: screenWidth,
     height: screenHeight / 7,
+    paddingHorizontal : screenWidth/10,
     flexDirection : 'row',
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const TaskContext = createContext();
@@ -9,6 +10,7 @@ export const TaskProvider = ({ children }) => {
     const [isAddingTask, setIsAddingTask] = useState(false);
 
 
+    //Ceci permet de charger des tâches à partir de l'asyncStorage lorsque le composant est monté
     useEffect(() => {
         const loadTasks = async () => {
             try {
@@ -16,14 +18,14 @@ export const TaskProvider = ({ children }) => {
                 if (storedTasks) {
                     const parsedTasks = JSON.parse(storedTasks);
                     if (parsedTasks.length === 0) {
-                        console.log("im here in empty tasks");
+                        console.log("Debugging --> im here in empty tasks");
                         setIsEntryVisible(true);
                     } else {
-                        console.log("im here in filled tasks");
+                        console.log("Debugging --> im here in filled tasks");
                         setTasks(parsedTasks);
                     }
                 } else {
-                    console.log("No task element At All");
+                    console.log("Debugging --> No task element At All");
                     setIsEntryVisible(true);
                 }
             } catch (error) {
@@ -36,6 +38,7 @@ export const TaskProvider = ({ children }) => {
 
     }, []);
 
+    //fonction qui enregistre la tâche dans AsyncStorage
     const saveTasks = async (newTasks) => {
         try {
             await AsyncStorage.setItem('tasks', JSON.stringify(newTasks));
@@ -44,6 +47,7 @@ export const TaskProvider = ({ children }) => {
         }
     };
 
+    //fonction qui permet d'ajouter une nouvelle tâche (elle invoque la méthode save task)
     const addTask = (task) => {
         const newTasks = [...tasks, task];
         setTasks(newTasks);
@@ -51,15 +55,34 @@ export const TaskProvider = ({ children }) => {
         setIsEntryVisible(false);
     };
 
+    //fonction qui effectue la suppression d'une tâche (alert l'utilisateur avant de supprimer pour une meilleur UX)
     const removeTask = (taskId) => {
-        const newTasks = tasks.filter(task => task.id !== taskId);
-        setTasks(newTasks);
-        saveTasks(newTasks);
-        if (newTasks.length === 0) {
-            setIsEntryVisible(true);
-        }
-    };
+        Alert.alert(
+            "Es-tu sûr?",
+            "Voulez-vous vraiment supprimer cette tâche ?",
+            [
+                {
+                    text: "Annuler",
+                    style: "cancel"
+                },
+                {
+                    text: "Supprimer",
+                    onPress: () => {
+                        const newTasks = tasks.filter(task => task.id !== taskId);
+                        setTasks(newTasks);
+                        saveTasks(newTasks);
+                        if (newTasks.length === 0) {
+                            setIsEntryVisible(true);
+                        }
+                    },
+                    style: "destructive"
+                }
+            ],
+            { cancelable: false }
+        );
+    }
 
+    //fonction qui marque une tâche comme terminée
     const markTaskAsCompleted = (taskId) => {
         const newTasks = tasks.map(task =>
             task.id === taskId ? { ...task, completed: true } : task
@@ -68,6 +91,7 @@ export const TaskProvider = ({ children }) => {
         saveTasks(newTasks);
     };
 
+    //fonction responsable de l'affichage de l'écran d'ajout de tâche
     const toggleIsAddingTask = (value) => {
         setIsAddingTask(value);
     };

@@ -6,9 +6,6 @@ import TaskList from '../screens/TaskList';
 import Header from '../components/Header';
 import Entry from './Entry';
 
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
-
 const MainScreen = () => {
     const { isEntryVisible, isAddingTask } = useContext(TaskContext);
     return (

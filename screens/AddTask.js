@@ -11,6 +11,7 @@ const AddTask = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
+  //Fonction qui gère le bouton de sauvegarde et ajoute la tâche
   const handleSubmit = () => {
     if (!titleHasErrors() && title !== '' && description !== '') {
       const newTask = {
@@ -29,6 +30,7 @@ const AddTask = () => {
     }
   };
 
+  //Le titre ne doit pas contenir de numéros 
   const titleHasErrors = () => {
     const regex = /\d/;
     return regex.test(title);
@@ -37,12 +39,12 @@ const AddTask = () => {
   return (
     <View style={styles.container}>
       <View style={styles.backHandlerContainer}>
-        <Button style={{width : screenWidth/3}} icon="arrow-left" mode="contained" onPress={() => toggleIsAddingTask(false)}>
-          Back
+        <Button style={{ width: screenWidth / 3 }} icon="arrow-left" mode="contained" onPress={() => toggleIsAddingTask(false)}>
+          Liste
         </Button>
       </View>
       <View style={styles.helperText}>
-        <Text style={styles.text}>You can add a task by specifying the title and the description</Text>
+        <Text style={styles.text}>Vous pouvez ajouter une tâche en spécifiant le titre et la description</Text>
       </View>
       <View style={styles.card}>
         <View style={styles.imageContainer}>
@@ -53,7 +55,7 @@ const AddTask = () => {
         <View style={styles.infosContainer}>
           <View style={styles.titleContainer}>
             <TextInput
-              placeholder="Title"
+              placeholder="Tapez le Titre ici ..."
               style={styles.title}
               value={title}
               onChangeText={setTitle}
@@ -61,12 +63,12 @@ const AddTask = () => {
             />
           </View>
           <HelperText type="error" visible={titleHasErrors()}>
-            Title should not contain numbers
+            Le titre ne doit pas contenir de chiffres
           </HelperText>
 
           <View style={styles.descriptionContainer}>
             <TextInput
-              placeholder="type the description here ..."
+              placeholder="Tapez la description ici ..."
               style={styles.description}
               value={description}
               onChangeText={setDescription}
@@ -78,7 +80,7 @@ const AddTask = () => {
 
         <View style={styles.buttonContainer}>
           <Button style={styles.button} mode="contained" onPress={handleSubmit}>
-            Submit
+            Souvegarder
           </Button>
         </View>
       </View>
@@ -90,18 +92,18 @@ const AddTask = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems : 'center',
-    marginTop : screenHeight/20
+    alignItems: 'center',
+    marginTop: screenHeight / 20
   },
   backHandlerContainer: {
     width: screenWidth,
-    height : screenHeight/14,
-    justifyContent : 'center',
+    height: screenHeight / 14,
+    justifyContent: 'center',
     marginLeft: screenWidth / 20,
   },
   helperText: {
     width: screenWidth,
-    height : screenHeight/14,
+    height: screenHeight / 14,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 5,
@@ -112,8 +114,8 @@ const styles = StyleSheet.create({
     fontStyle: 'italic'
   },
   card: {
-    width: screenWidth/1.05,
-    height : screenHeight*9/14,
+    width: screenWidth / 1.05,
+    height: screenHeight * 9 / 14,
     justifyContent: 'space-evenly',
     alignItems: 'center',
     backgroundColor: 'white',
@@ -129,7 +131,6 @@ const styles = StyleSheet.create({
     width: screenWidth / 1.2,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'yellow'
   },
   image: {
     width: screenWidth / 2.5,
@@ -138,7 +139,6 @@ const styles = StyleSheet.create({
   infosContainer: {
     flex: 0.5,
     width: screenWidth / 1.2,
-    // backgroundColor: 'purple'
   },
   titleContainer: {
     justifyContent: 'center',
@@ -174,7 +174,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopColor: 'grey',
     borderTopWidth: 0.5,
-    // backgroundColor : 'green',
   },
   button: {
     width: screenWidth / 1.2

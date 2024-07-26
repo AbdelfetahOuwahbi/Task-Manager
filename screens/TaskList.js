@@ -5,7 +5,6 @@ import { TaskContext } from '../TaskContext';
 import TaskItem from '../components/TaskItem';
 
 const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
 
 const TaskList = () => {
   const { tasks, toggleIsAddingTask } = useContext(TaskContext);
@@ -13,16 +12,16 @@ const TaskList = () => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={{fontSize : 20, fontWeight : 'bold'}}>Liste des tâches </Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Liste des tâches </Text>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}  style={styles.tasksContainer}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.tasksContainer}>
         {tasks.map(task => (
           <TaskItem key={task.id} task={task} />
         ))}
       </ScrollView>
       <View style={styles.buttonContainer}>
         <Button style={styles.button} icon="checkbox-marked-circle-plus-outline" mode="contained" onPress={() => toggleIsAddingTask(true)}>
-          Add new Task
+          Ajouter une nouvelle tâche
         </Button>
       </View>
     </View>
@@ -32,22 +31,21 @@ const TaskList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection : 'column'
+    flexDirection: 'column'
   },
-  titleContainer : {
+  titleContainer: {
     flex: 0.1,
-    justifyContent : 'center',
+    justifyContent: 'center',
   },
   tasksContainer: {
-    flex : 0.8,
+    flex: 0.8,
   },
   buttonContainer: {
     flex: 0.1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderTopColor : 'grey',
-    borderTopWidth : 0.5,
-    // backgroundColor: 'purple',
+    borderTopColor: 'grey',
+    borderTopWidth: 0.5,
   },
   button: {
     width: screenWidth / 1.1
