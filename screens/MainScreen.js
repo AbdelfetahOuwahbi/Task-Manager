@@ -11,7 +11,6 @@ const screenHeight = Dimensions.get('window').height;
 
 const MainScreen = () => {
     const { isEntryVisible, isAddingTask } = useContext(TaskContext);
-    console.log(isEntryVisible, "and ", isAddingTask);
     return (
         <View style={styles.container}>
             <Header />

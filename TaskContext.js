@@ -15,7 +15,6 @@ export const TaskProvider = ({ children }) => {
                 const storedTasks = await AsyncStorage.getItem('tasks');
                 if (storedTasks) {
                     const parsedTasks = JSON.parse(storedTasks);
-                    console.log('Stored tasks:', JSON.parse(storedTasks));
                     if (parsedTasks.length === 0) {
                         console.log("im here in empty tasks");
                         setIsEntryVisible(true);
@@ -56,6 +55,9 @@ export const TaskProvider = ({ children }) => {
         const newTasks = tasks.filter(task => task.id !== taskId);
         setTasks(newTasks);
         saveTasks(newTasks);
+        if (newTasks.length === 0) {
+            setIsEntryVisible(true);
+        }
     };
 
     const markTaskAsCompleted = (taskId) => {

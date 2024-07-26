@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Button } from 'react-native-paper';
 import { TaskContext } from '../TaskContext';
 import TaskItem from '../components/TaskItem';
@@ -12,11 +12,14 @@ const TaskList = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.tasksContainer}>
+      <View style={styles.titleContainer}>
+        <Text style={{fontSize : 20, fontWeight : 'bold'}}>Liste des tâches </Text>
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false}  style={styles.tasksContainer}>
         {tasks.map(task => (
           <TaskItem key={task.id} task={task} />
         ))}
-      </View>
+      </ScrollView>
       <View style={styles.buttonContainer}>
         <Button style={styles.button} icon="checkbox-marked-circle-plus-outline" mode="contained" onPress={() => toggleIsAddingTask(true)}>
           Add new Task
@@ -28,13 +31,15 @@ const TaskList = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    flexDirection : 'column'
+  },
+  titleContainer : {
+    flex: 0.1,
+    justifyContent : 'center',
   },
   tasksContainer: {
-    flex : 0.9,
-    justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'yellow',
+    flex : 0.8,
   },
   buttonContainer: {
     flex: 0.1,
